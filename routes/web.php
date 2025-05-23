@@ -10,8 +10,9 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class,'index']);
 
-
-
+// for uploading winners details
+// route::post('/upload_winner', [HomeController::class, 'upload']);
+Route::post('/upload_winner', [HomeController::class, 'upload'])->name('upload.winner');
 
 Route::middleware([
     'auth:sanctum',
