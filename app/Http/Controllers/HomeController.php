@@ -10,7 +10,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home.index');
+        // Rendering on the blade view
+        $post = Post::all();
+        //compacting
+        return view('home.index', compact('post'));
     }
 
     public function upload(Request $request)
@@ -38,8 +41,8 @@ class HomeController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image'); // Use `file()` method for clarity
             $imagename = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('post'), $imagename);
-            $data->image = $imagename;
+            $image->move(public_path('post'), $imagename);// image storage path
+            $data->image = $imagename; // Storing the image
         }
 
         $data->save();

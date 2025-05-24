@@ -35,12 +35,15 @@
         </ul>
     </nav>
 </body>
+
+{{-- Fetching data from the database using foreach loop --}}
+@foreach ($post as $post)
 <div class="container">
-    <h1>Grand Excellence Award</h1>
-    <img src="award.jpg" alt="Award Image">
-    <p class="description">Honoring outstanding achievement, innovation, and dedication to excellence.</p>
+    <h1>{{$post->username}}</h1>
+    <img src="post/{{$post->image}}" alt="Award Image">
+    <p class="description">{{$post->description}}</p>
     <div class="award-badge">Winner - 2025 Excellence Prize</div>
 </div>
-
+@endforeach
 
 </html>
