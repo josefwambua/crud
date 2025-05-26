@@ -10,6 +10,10 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class,'index']);
 
+// Viewing  winner
+Route::get('/view_winner', [HomeController::class,'view_winner']);
+
+
 // for uploading winners details
 // route::post('/upload_winner', [HomeController::class, 'upload']);
 Route::post('/upload_winner', [HomeController::class, 'upload'])->name('upload.winner');

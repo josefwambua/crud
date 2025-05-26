@@ -6,6 +6,8 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function Laravel\Prompts\alert;
+
 class HomeController extends Controller
 {
     public function index()
@@ -48,5 +50,14 @@ class HomeController extends Controller
         $data->save();
         return redirect()->back()->with('success', 'Post uploaded successfully!');
         
+    }
+    public function view_winner(){
+
+        $name=Auth::user()->name;
+          $post = Post::all();
+        $winner = Post::WHERE('username','===',$name);
+
+        // sending winner into winners_page
+        return view("winners_page",compact('post'));
     }
 }
