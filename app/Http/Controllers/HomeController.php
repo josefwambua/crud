@@ -60,4 +60,29 @@ class HomeController extends Controller
         // sending winner into winners_page
         return view("winners_page",compact('post'));
     }
+    public function delete_post($id){
+
+        $data=post::find($id);
+        $data->delete();
+        return redirect()->back();
+
+    }
+    public function update_post($id){
+        $data=post::find($id);
+        return view('update_post', compact('data'));
+    }
+    public function confirm_update(Request $request, $id){
+        $data=post::find($id);
+        $data->description=$request->description;
+
+         if ($request->hasFile('image')) {
+            $image = $request->file('image'); // Use `file()` method for clarity
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('post'), $imagename);// image storage path
+            $data->image = $imagename; // Storing the image
+        }
+        $data->save();
+        return redirect()->back();
+
+    }
 }
